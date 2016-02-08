@@ -1,5 +1,7 @@
 # 16745-Assignment-1
 
+The code for the assignment can be found [here] (assignment1Code.zip)
+
 ## Part 1
 I used Matlab's fmincon to do the optimization, providing the joint limits as upper and lower bounds on the parameters and satisfying other constraints throught the cost function. The cost function I used consisted of the distance from the end effector to the target location, the distance between the target orientation and the end effector orientation based on the different between the identity matrix and the product of one rotation with the inverse of the other, and cost functions based on proximity to the obstacles and the joint limits. The cost function for the joint limits is 1 divided by the distance between the actual joint value and the limit, summed over each limit. The cost function for the obstacles is the similar, where the distance used is the shortest distance between the obstacle and the robot. These cost functions work well because they fade to 0 at a reasonable distance away from the obstacle or joint limit, but near the constraint they quickly rise to infinity, so there can never be a situation where a local minimum sits on or behind the boundary. They are also relatively easy to differentiate, which helped with the next part.
 
